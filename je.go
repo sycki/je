@@ -9,18 +9,6 @@ import (
 	"os"
 )
 
-type option struct {
-	file	string
-}
-
-func (o *option) AddArgs(cmd *flag.FlagSet) {
-	cmd.StringVar(&o.file, "f", "", "")
-}
-
-func NewDefaultOption() *option {
-	return &option{}
-}
-
 func main() {
 	cmd := flag.CommandLine
 	opt := NewDefaultOption()
@@ -142,7 +130,7 @@ func SetByKey(o, k, v string) string {
 	}
 
 	var vo interface{}
-	err = json.Unmarshal([]byte(v), vo)
+	err = json.Unmarshal([]byte(v), vo)// TODO 当v是一个字符串时，会解析失败
 	if err != nil {
 		println(err.Error())
 		return ""
