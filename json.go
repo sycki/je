@@ -93,19 +93,23 @@ func Set(o, path, v string) string {
 	values[keys[len(keys)-1]] = v
 	
 	// reverse map
-	
-
-	// map to json
-	value = values[keys[0]]
-println("===========1", value)
-	delete(values, keys[0])
-	for k, v := range values {
-		value = SetByKey(value, k, v)
-println("===========3", value)
+	revalues := make(map[string]string, len(keys))
+	for i := len(keys)-1; i >= 0; i-- {
+		key := keys[i]
+		revalues[key] = values[key]
 	}
 
-	value = SetByKey(o, keys[0], value)
-	return value
+	// map to json
+	lastKey := keys[len(keys)-1]
+	lastValue := revalues[lastKey]
+	delete(revalues, lastKey)
+	for k, v := range revalues {
+		lastValue = SetByKey(v, lastKey, lastValue)
+		lastKey = k
+	}
+
+	o = SetByKey(o, lastKey, lastValue)
+	return o
 }
 
 // get json by short key
