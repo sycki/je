@@ -64,12 +64,12 @@ func Get(o, path string) string {
 
 // set json by path
 func Set(o, path, v string) string {
-	// json to map
 	keys, err := parsePath(path)
 	if err != nil {
 		println(err.Error())
 	}
 
+	// json to map
 	values := make(map[string]string, len(keys))
 	value := o
 	for _, key := range keys {
@@ -129,11 +129,10 @@ func SetByKey(o, k, v string) string {
 		return ""
 	}
 
-	var vo interface{}
-	err = json.Unmarshal([]byte(v), vo)// TODO 当v是一个字符串时，会解析失败
+	var vo interface{} = ""
+	err = json.Unmarshal([]byte(v), &vo)
 	if err != nil {
-		println(err.Error())
-		return ""
+		vo = v
 	}
 
 	m[k] = vo
