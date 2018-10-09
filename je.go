@@ -1,12 +1,12 @@
 package main
 
 import (
-	"strings"
 	"encoding/json"
-	"fmt"
 	"flag"
+	"fmt"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -41,23 +41,23 @@ func main() {
 		os.Exit(255)
 	}
 
-	fmt.Println(result)
+	fmt.Print(result)
 }
 
 // get json by path
 func Get(o, path string) string {
-        keys, err := parsePath(path)
+	keys, err := parsePath(path)
 	if err != nil {
 		println(err.Error())
 	}
 
 	value := o
-        for _, key := range keys {
+	for _, key := range keys {
 		if value == "" {
 			return value
 		}
 		value = GetByKey(value, key)
-        }
+	}
 
 	return value
 }
@@ -79,10 +79,10 @@ func Set(o, path, v string) string {
 
 	// set value
 	values[keys[len(keys)-1]] = v
-	
+
 	// reverse map
 	revalues := make(map[string]string, len(keys))
-	for i := len(keys)-1; i >= 0; i-- {
+	for i := len(keys) - 1; i >= 0; i-- {
 		key := keys[i]
 		revalues[key] = values[key]
 	}
@@ -102,6 +102,9 @@ func Set(o, path, v string) string {
 
 // get json by short key
 func GetByKey(o, k string) string {
+	if k == "" {
+		return o
+	}
 	m := make(map[string]interface{})
 
 	err := json.Unmarshal([]byte(o), &m)
@@ -153,13 +156,6 @@ func parsePath(path string) ([]string, error) {
 	}
 
 	keys := strings.Split(path, ".")[1:]
-	for _, v := range keys {
-		if v == "" {
-			return nil, fmt.Errorf("error while parse the path.")
-		}
-	}
 
 	return keys, nil
 }
-
-
