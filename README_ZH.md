@@ -37,7 +37,7 @@ mv je /usr/local/bin/je                         // move to your PATH
     echo '{"k1":{"k11":"v11","k12":"v12"},"k2":"v2"}' | je .k2 '{"k21":"v21"}'
     {"k1":{"k11":"v11","k12":"v12"},"k2":{"k21":"v21"}}
     ```
-- Set string
+- Set array
     ```bash
     echo '{"k1":{"k11":"v11","k12":"v12"},"k2":"v2"}' | je .k2 '[{"k21":"v21"}]'
     {"k1":{"k11":"v11","k12":"v12"},"k2":[{"k21":"v21"}]}
