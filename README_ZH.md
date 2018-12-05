@@ -1,11 +1,11 @@
 # Json editor
-The Json editor is an easy-to-use json query and editing tool that you can use in command line and golang projects.
+Json editor 是一个易于使用的 json 查询和编辑工具，你可以在命令行和 golang 项目中使用它。
 
-## Documents
+## 文档
 * [中文文档](https://github.com/sycki/je/blob/master/README_ZH.md)
 * [English doc](https://github.com/sycki/je)
 
-## Install
+## 安装
 ```
 curl -Lo je https://sycki.com/f/bin/je          // for linux
 curl -Lo je https://sycki.com/f/bin/je-darwin   // for mac
@@ -13,8 +13,8 @@ chmod +x je
 mv je /usr/local/bin/je                         // move to your PATH
 ```
 
-## Use in command line
-### Get
+## 在命令行中使用
+### 查询操作
 - Get string
     ```bash
     echo '{"k1":"v1","k2":2,"k3":[{"k31":"v31"},{"k32":"v32"},{"k33":"v33"}]}' | je .k1
@@ -31,7 +31,7 @@ mv je /usr/local/bin/je                         // move to your PATH
     v31
     ```
 
-### Set
+### 编辑操作
 - Set struct
     ```bash
     echo '{"k1":{"k11":"v11","k12":"v12"},"k2":"v2"}' | je .k2 '{"k21":"v21"}'
@@ -63,9 +63,7 @@ mv je /usr/local/bin/je                         // move to your PATH
     {"k1":{"k11":"v11","k12":"v12"},"k2":"v0"}
     ```
 
-## Use in golang code
-More demo see `je_test.go`
-
+## 在golang项目中使用
 ### Get
 ```go
 import github.com/sycki/je
@@ -87,3 +85,5 @@ func main() {
     println(r) // {"k1":"v1","k2":2,k3":3}
 }
 ```
+
+更多的使用例子请看源码文件 `je_test.go`
