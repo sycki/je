@@ -124,7 +124,7 @@ func TypeB(v []byte) interface{} {
 func getOne(o, k []byte) (interface{}, error) {
 	switch keyType(k) {
 	case length:
-		return getLen(k)
+		return getLen(o)
 	case index:
 		return getIndex(o, k)
 	default:

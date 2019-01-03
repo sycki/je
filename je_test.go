@@ -25,6 +25,12 @@ func TestGet(t *testing.T) {
 		t.Fail()
 	}
 
+	// get length string
+	r = Get(str, ".k3.#")
+	if r != "3" {
+		t.Fail()
+	}
+
 	// get string
 	r = Get(str, ".k3.0.k31")
 	if r != "v31" {

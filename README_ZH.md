@@ -25,6 +25,11 @@ mv je /usr/local/bin/je                         // move to your PATH
     echo '{"k1":"v1","k2":2,"k3":[{"k31":"v31"},{"k32":"v32"},{"k33":"v33"}]}' | je .k2
     2
     ```
+- Get length string
+    ```bash
+    echo '{"k1":"v1","k2":2,"k3":[{"k31":"v31"},{"k32":"v32"},{"k33":"v33"}]}' | je .k3.#
+    3
+    ```
 - Get string
     ```bash
     echo '{"k1":"v1","k2":2,"k3":[{"k31":"v31"},{"k32":"v32"},{"k33":"v33"}]}' | je .k3.0.k31
